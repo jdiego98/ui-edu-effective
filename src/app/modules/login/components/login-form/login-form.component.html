@@ -1,0 +1,25 @@
+<div class="container">
+  <mat-card class="login-card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>email</mat-label>
+        <input matInput type="text" formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-raised-button type="submit">Login</button>
+      </div>
+
+      <div class="register-link">
+        Don't have an account? <a routerLink="/auth/register">Register</a>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

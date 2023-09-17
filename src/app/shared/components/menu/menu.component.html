@@ -1,0 +1,12 @@
+<header>
+  <mat-toolbar color="primary">
+
+    <span class="logo">EduEffective</span>
+  
+    <button *ngIf="isLogged$ | async" mat-icon-button (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+</header>
+
+
