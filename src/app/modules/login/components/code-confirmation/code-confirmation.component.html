@@ -1,0 +1,22 @@
+<div class="confirmation-container">
+    <mat-card class="confirmation-card">
+      <mat-card-title>Confirmación</mat-card-title>
+  
+      <form [formGroup]="confirmationForm" (ngSubmit)="onConfirm()">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+          </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Código de Confirmación</mat-label>
+          <input matInput type="text" formControlName="confirmationCode" />
+        </mat-form-field>
+        
+        <button mat-raised-button type="submit" class="submit-button" (click)="onConfirm()">Confirmar</button>
+
+        <div class="resent-code" *ngIf="resendButton">
+            <button mat-raised-button color="primary" (click)="resentCode()">Resend Code</button>
+        </div>
+      </form>
+    </mat-card>
+</div>
