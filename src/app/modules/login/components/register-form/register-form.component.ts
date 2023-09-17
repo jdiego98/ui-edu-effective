@@ -11,14 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RegisterFormComponent {
 
-  isConfirm: boolean;
+  // isConfirm: boolean;
   user: IUser; 
 
   registerForm!: FormGroup;
   
-  constructor(private fb: FormBuilder, private router: Router, 
-    private authService: AuthenticationService, private snackBar: MatSnackBar) {
-    this.isConfirm = false;
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthenticationService, private snackBar: MatSnackBar) {
+    // this.isConfirm = false;
     this.user = {} as IUser
    }
 
@@ -32,8 +31,11 @@ export class RegisterFormComponent {
   }
 
   public signUp(): void {
-    this.authService.signUp(this.user).then(() => {
-      this.isConfirm = true;
+    this.authService.signUp(this.user).then((res) => {
+      this.snackBar.open(`Please check your email! We've sent you a code to verify your account.`, 'Close', {
+        duration: 5000
+      });
+      this.router.navigate(['/confirmation'])
     }).catch((error) => {
       this.snackBar.open(error, 'Close', {
         duration: 5000,
@@ -60,7 +62,6 @@ export class RegisterFormComponent {
       this.user.email = this.registerForm.get('email')?.value;
       this.user.password = this.registerForm.get('password')?.value;
       this.signUp()
-      this.router.navigate(['/confirmation'])
     }
   }
 

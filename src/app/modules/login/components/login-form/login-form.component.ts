@@ -36,7 +36,11 @@ export class LoginFormComponent {
     this.authService.signIn(this.user).then(() => {
       this.router.navigate(['/'])
     }).catch((error) => {
-      this.snackBar.open(error, 'Close',{
+      let message = error.message || 'An error occurred. Please try again.';
+      if (message.includes('NotAuthorizedException')) {
+        message = 'Incorrect username or password. Please try again.';
+      }
+      this.snackBar.open(message, 'Close',{
         duration: 5000
       });
     });

@@ -29,7 +29,6 @@ export class AuthenticationService {
     return Auth.signUp({
       username: user.email,
       password: user.password,
-      
     });
   }
 
