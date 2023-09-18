@@ -23,8 +23,10 @@ export class RegisterFormComponent {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      birthdate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     }, { validator: this.checkPasswords });
@@ -61,7 +63,15 @@ export class RegisterFormComponent {
     if (this.registerForm.valid && this.registerForm) {
       this.user.email = this.registerForm.get('email')?.value;
       this.user.password = this.registerForm.get('password')?.value;
+      this.user.name =  this.registerForm.get('name')?.value;
+      this.user.lastname = this.registerForm.get('lastname')?.value;
+      this.user.birthdate = this.registerForm.get('birthdate')?.value;
+
       this.signUp()
+    }else{
+      this.snackBar.open("There is an error in the form", 'Close', {
+        duration: 5000
+      });
     }
   }
 

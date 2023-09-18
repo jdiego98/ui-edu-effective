@@ -8,6 +8,8 @@ export interface IUser {
   password: string;
   code: string;
   name: string;
+  lastname: string;
+  birthdate: Date;
 }
 
 @Injectable({
@@ -26,9 +28,15 @@ export class AuthenticationService {
   }
 
   public signUp(user: IUser): Promise<any> {
+    let birthdateString = `${user.birthdate.getFullYear()}-${(user.birthdate.getMonth() + 1).toString().padStart(2, '0')}-${user.birthdate.getDate().toString().padStart(2, '0')}`;
     return Auth.signUp({
       username: user.email,
       password: user.password,
+      attributes: {
+        'custom:name': user.name,
+        'custom:lastname': user.lastname,
+        'custom:birthdate': birthdateString,
+      }
     });
   }
 
