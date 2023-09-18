@@ -10,7 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
   ],
   exports: [
     MatInputModule,
@@ -38,6 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatListModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule { }

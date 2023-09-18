@@ -1,17 +1,29 @@
 <div class="registration-container">
     <mat-card class="registration-card">
-      <mat-card-title>Register</mat-card-title>
-  
+      <mat-card-title>Registro</mat-card-title>
       <form [formGroup]="registerForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" formControlName="name" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput type="text" formControlName="lastname" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthdate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" />
-        </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-          <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username" />
-        </mat-form-field>
+        </mat-form-field>        
         
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
