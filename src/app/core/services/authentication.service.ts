@@ -70,6 +70,7 @@ export class AuthenticationService {
     }else{
       return this.getUser().then((user:any) => {
         if (user) {
+          this.authenticationSubject.next(true);
           return true;
         }else {
           return false;
@@ -77,7 +78,48 @@ export class AuthenticationService {
       }).catch(() => {
         return false;
       });
+    }    
+  }
+
+  public async getToken(): Promise<string | null> {
+    try {
+      const session = await Auth.currentSession();
+      return session.getIdToken().getJwtToken();
+    } catch (error) {
+      console.error('Error fetching JWT token:', error);
+      return null;
     }
   }
+
+  // public async checkTokenValidity(): Promise<boolean> {
+  //   try {
+  //     const session = await Auth.currentSession();
+  //     const token = session.getIdToken().getJwtToken();
+  //     const decodedToken: any = this.decodeJWT(token);
+  //     const currentTimestamp = Math.floor(new Date().getTime() / 1000);
+  
+  //     if (currentTimestamp > decodedToken.exp) {
+  //       await this.signOut();
+  //       return false;
+  //     }
+  
+  //     return true;
+  
+  //   } catch (error) {
+  //     console.error('Error checking token validity:', error);
+  //     return false;
+  //   }
+  // }
+  
+  // private decodeJWT(token: string): any {
+  //   const base64Url = token.split('.')[1];
+  //   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  //   const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+  //     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  //   }).join(''));
+  
+  //   return JSON.parse(jsonPayload);
+  // }
+  
 
 }

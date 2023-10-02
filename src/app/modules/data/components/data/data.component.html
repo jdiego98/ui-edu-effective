@@ -1,1 +1,61 @@
-<p>data works!</p>
+<div class="container">
+  <div class="actions">
+    <!-- <mat-form-field  class="search-field" >
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="onSearch($event)" placeholder="Search...">
+    </mat-form-field> -->
+    <button
+      mat-raised-button
+      (click)="createDailyStudying()"
+      class="create-button"
+    >
+      Agregar dia de estudio
+    </button>
+  </div>
+  <mat-table [dataSource]="submittedData">
+    <ng-container matColumnDef="DateOfCreation">
+      <mat-header-cell *matHeaderCellDef>Date of Creation</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{
+        data.dateOfCreation | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Pomodors">
+      <mat-header-cell *matHeaderCellDef>Pomodoros</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.pomodoros }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editDailyStudying(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="deleteDailyStudying(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="['DateOfCreation', 'Pomodors', 'Description', 'Edit', 'Delete']"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: ['DateOfCreation', 'Pomodors', 'Description', 'Edit', 'Delete']
+      "
+    ></mat-row>
+  </mat-table>
+</div>

@@ -8,6 +8,8 @@ import { ModulesModule } from './modules/modules.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NgChartsModule } from 'ng2-charts';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {AuthInterceptor} from './core/interceptors/auth.interceptor'
 
 @NgModule({
   declarations: [
@@ -21,8 +23,15 @@ import { NgChartsModule } from 'ng2-charts';
     CoreModule,
     SharedModule,
     NgChartsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

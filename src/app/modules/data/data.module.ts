@@ -6,19 +6,24 @@ import { DataRoutingModule } from './data-routing.module';
 import { StatsComponent } from './components/stats/stats.component';
 import { DataComponent } from './components/data/data.component';
 import { NgChartsModule } from 'ng2-charts';
+import { DataDialogComponent } from './components/data-dialog/data-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     StatsComponent,
-    DataComponent
+    DataComponent,
+    DataDialogComponent
   ],
   imports: [
     CommonModule,
     DataRoutingModule,
     MaterialModule,
     NgChartsModule,
+    ReactiveFormsModule,
   ]
 })
 export class DataModule { }
