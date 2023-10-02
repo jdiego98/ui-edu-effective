@@ -12,6 +12,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 @NgModule({
   declarations: [],
@@ -29,7 +34,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    MatTabsModule,
+    MatTableModule,    
+    MatDialogModule,
   ],
   exports: [
     MatInputModule,
@@ -44,6 +51,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatMenuModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
+    MatTableModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }

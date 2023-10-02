@@ -37,7 +37,7 @@ export class RegisterFormComponent {
       this.snackBar.open(`Please check your email! We've sent you a code to verify your account.`, 'Close', {
         duration: 5000
       });
-      this.router.navigate(['/confirmation'])
+      this.router.navigate(['/auth/confirmation'])
     }).catch((error) => {
       this.snackBar.open(error, 'Close', {
         duration: 5000,
