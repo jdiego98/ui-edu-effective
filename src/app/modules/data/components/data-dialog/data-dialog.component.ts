@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DailyStudying } from '../../models/daily-studying';
 import { DailyStudyingService } from '../../services/daily-studying.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -19,8 +19,10 @@ export class DataDialogComponent {
     private fb: FormBuilder, 
     private dailyStudyingService: DailyStudyingService, 
     public dialogRef: MatDialogRef<DataDialogComponent>,
-    private snackBar: MatSnackBar) { 
-    this.newDailyStudying = {} as DailyStudying
+    private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: { mode: 'create' | 'edit'; dailyStudying?: DailyStudying }) { 
+
+    this.newDailyStudying = {} as DailyStudying;    
   }
 
   ngOnInit(): void {
@@ -28,28 +30,56 @@ export class DataDialogComponent {
       pomodoros: ['', [Validators.required, Validators.min(1)]],  // al menos 1 pomodoro
       description: ['', Validators.required]
     });
+
+    if (this.data.mode === 'edit' && this.data.dailyStudying) {
+      this.newDailyStudying = this.data.dailyStudying;
+      this.form = this.fb.group({
+        pomodoros: [this.data.dailyStudying.pomodoros, [Validators.required, Validators.min(1)]],
+        description: [this.data.dailyStudying.description, Validators.required]
+      });
+    } else {
+      this.form = this.fb.group({
+        pomodoros: ['', [Validators.required, Validators.min(1)]],
+        description: ['', Validators.required]
+      });
+    }
   }
 
   onSubmit() {
     if (this.form?.valid && this.form) {
-      this.newDailyStudying.pomodoros = this.form?.get('pomodoros')?.value;
-      this.newDailyStudying.description = this.form?.get('description')?.value;     
+      this.newDailyStudying.pomodoros = this.form.get('pomodoros')?.value;
+      this.newDailyStudying.description = this.form.get('description')?.value;
 
-      this.dailyStudyingService.createDailyStudying(this.newDailyStudying).subscribe({
-        next: (res) => {
-          this.dialogRef.close();
-          this.snackBar.open('Se ha registrado!', 'Close', {
-            duration: 3000,
-          });
-        },
-        error: (error) => {
-          this.snackBar.open('Hubo un error al crear el registro', 'Close', {
-            duration: 3000,
-          });
+      if (this.data.mode === 'create') {
+        this.dailyStudyingService.createDailyStudying(this.newDailyStudying).subscribe({
+          next: (res) => {
+            this.dialogRef.close();
+            this.snackBar.open('Se ha registrado!', 'Close', {
+              duration: 3000,
+            });
+          },
+          error: (error) => {
+            this.snackBar.open('Hubo un error al crear el registro', 'Close', {
+              duration: 3000,
+            });
+          }});
+        } else if (this.data.mode === 'edit') {
+          // this.newDailyStudying.dateOfCreation =
+
+          this.dailyStudyingService.updateDailyStudying(this.newDailyStudying).subscribe({
+            next: (res) => {
+              this.dialogRef.close();
+              this.snackBar.open('Se ha actualizado registrado!', 'Close', {
+                duration: 3000,
+              });
+            },
+            error: (error) => {
+              this.snackBar.open('Hubo un error al editar el registro', 'Close', {
+                duration: 3000,
+              });
+            }});
         }
-      }    
-      );
-
     }
-  }
+}
+
 }

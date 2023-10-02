@@ -22,22 +22,13 @@ export class DailyStudyingService {
   createDailyStudying(dailyStudying: DailyStudying): Observable<DailyStudying>{
     return this.http.post<DailyStudying>(`${this.apiUrl}/daily-studying`, dailyStudying);
   }
+
+  updateDailyStudying(dailyStudying: DailyStudying): Observable<DailyStudying>{
+    return this.http.patch<DailyStudying>(`${this.apiUrl}/daily-studying`, dailyStudying);
+  }
+
+  deleteDailyStudying(dailyStudying: DailyStudying): Observable<DailyStudying>{
+    return this.http.delete<DailyStudying>(`${this.apiUrl}/daily-studying`,  { body: dailyStudying });
+  }
+
 }
-
-
-// import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ApiService {
-//   private apiUrl = 'https://tu-api-endpoint.com/data'; // Reemplaza con tu endpoint
-
-//   constructor(private http: HttpClient) { }
-
-//   fetchData(): Observable<any> {
-//     return this.http.get<any>(this.apiUrl);
-//   }
-// }
