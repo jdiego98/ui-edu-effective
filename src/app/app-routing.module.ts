@@ -9,15 +9,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule),
+    loadChildren: () => import('./modules/data/data.module').then(m => m.DataModule),
     canActivate: [AuthGuard]
-  },
-  // {
-  //   path: '',
-  //   redirectTo: '/auth',
-  //   pathMatch: 'full'
-  // },
-  
+  },  
 ];
 
 @NgModule({
