@@ -27,19 +27,19 @@ export class DataDialogComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      pomodoros: ['', [Validators.required, Validators.min(1)]],  // al menos 1 pomodoro
+      pomodoros: ['', [Validators.required, Validators.min(0)]],  
       description: ['', Validators.required]
     });
 
     if (this.data.mode === 'edit' && this.data.dailyStudying) {
       this.newDailyStudying = this.data.dailyStudying;
       this.form = this.fb.group({
-        pomodoros: [this.data.dailyStudying.pomodoros, [Validators.required, Validators.min(1)]],
+        pomodoros: [this.data.dailyStudying.pomodoros, [Validators.required, Validators.min(0)]],
         description: [this.data.dailyStudying.description, Validators.required]
       });
     } else {
       this.form = this.fb.group({
-        pomodoros: ['', [Validators.required, Validators.min(1)]],
+        pomodoros: ['', [Validators.required, Validators.min(0)]],
         description: ['', Validators.required]
       });
     }
