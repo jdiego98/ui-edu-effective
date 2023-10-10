@@ -15,6 +15,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -37,6 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTabsModule,
     MatTableModule,    
     MatDialogModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatInputModule,
@@ -54,6 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTabsModule,
     MatTableModule,
     MatDialogModule,
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule { }

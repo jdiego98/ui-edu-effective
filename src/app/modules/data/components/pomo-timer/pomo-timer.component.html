@@ -1,0 +1,9 @@
+<div class="timer-container">
+  <h2>{{ minutes }}:{{ seconds | number : "2.0" }}</h2>
+  <span>Tarea 1 - 2/7</span>
+  <div class="actions">
+    <button mat-raised-button color="primary" *ngIf="!isRunning" (click)="startTimer()">Iniciar</button>
+    <button mat-raised-button color="warn" *ngIf="isRunning" (click)="pauseTimer()">Pausar</button>
+    <button mat-raised-button (click)="resetTimer()">Reiniciar</button>
+  </div>
+</div>

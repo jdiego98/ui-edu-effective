@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataDialogComponent } from './data-dialog.component';
+import { DataComponent } from './daily-studying.component';
 
-describe('DataDialogComponent', () => {
-  let component: DataDialogComponent;
-  let fixture: ComponentFixture<DataDialogComponent>;
+describe('DataComponent', () => {
+  let component: DataComponent;
+  let fixture: ComponentFixture<DataComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataDialogComponent ]
+      declarations: [ DataComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DataDialogComponent);
+    fixture = TestBed.createComponent(DataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
