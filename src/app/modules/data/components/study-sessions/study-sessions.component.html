@@ -1,1 +1,143 @@
-<p>study-sessions works!</p>
+<div class="container">
+  <div class="actions">
+    <button
+      mat-raised-button
+      (click)="createStudySession()"
+      class="create-button"
+    >
+      Add Study Session
+    </button>
+  </div>
+
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="selectStudySession(row)"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Course">
+      <mat-header-cell *matHeaderCellDef>Course</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.course }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Project">
+      <mat-header-cell *matHeaderCellDef>Project</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.project }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PomosExpected">
+      <mat-header-cell *matHeaderCellDef>Expected Pomodoros</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.pomodorosSpected }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PomosDone">
+      <mat-header-cell *matHeaderCellDef>Pomodoros Done</mat-header-cell>
+      <mat-cell *matCellDef="let data">{{ data.pomodorosDone }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editStudySession(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="deleteStudySession(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Complete">
+      <mat-header-cell *matHeaderCellDef> Complete </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="completeStudySession(element)">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'Select',        
+        'Name',
+        'Course',
+        'Project',
+        'Description',
+        'PomosExpected',
+        'PomosDone',
+        'Edit',
+        'Delete',
+        'Complete'
+      ]"
+    ></mat-header-row>
+
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: [
+          'Select',
+          'Name',
+          'Course',
+          'Project',
+          'Description',
+          'PomosExpected',
+          'PomosDone',
+          'Edit',
+          'Delete',
+          'Complete'
+        ]
+      "
+      [class.selected]="selection.isSelected(row)"
+    ></mat-row>
+
+    <!-- <mat-row
+      *matRowDef="
+        let row;
+        columns: [
+          'Complete',
+          'Name',
+          'Course',
+          'Project',
+          'Description',
+          'PomosExpected',
+          'PomosDone',
+          'Edit',
+          'Delete'
+        ]
+      "
+      [class.selected]="selectedStudySession === row"
+      (dblclick)="selectStudySession(row)"
+    ></mat-row> -->
+  </mat-table>
+
+  <mat-paginator
+    [length]="dataSource.data.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>

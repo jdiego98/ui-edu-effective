@@ -13,6 +13,7 @@ import { StudySessionsComponent } from './components/study-sessions/study-sessio
 import { DataLayoutComponent } from './components/data-layout/data-layout.component';
 import { WorkingLayoutComponent } from './components/working-layout/working-layout.component';
 import { FormsModule } from '@angular/forms';
+import { StudySessionsDialogComponent } from './components/study-sessions-dialog/study-sessions-dialog.component';
 
 
 
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     PomoTimerComponent,
     StudySessionsComponent,
     DataLayoutComponent,
-    WorkingLayoutComponent
+    WorkingLayoutComponent,
+    StudySessionsDialogComponent
   ],
   imports: [
     CommonModule,

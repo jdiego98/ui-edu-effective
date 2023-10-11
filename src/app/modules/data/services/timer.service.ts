@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
@@ -7,12 +8,14 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 export class TimerService {
 
 
-  private static readonly DEFAULT_MINUTES = 1;
+  private static readonly DEFAULT_MINUTES = 25;
   private alarmSound = new Audio('/assets/alarm.wav');
 
   private minutesSource = new BehaviorSubject<number>(TimerService.DEFAULT_MINUTES);
   private secondsSource = new BehaviorSubject<number>(0);
   private isRunningSource = new BehaviorSubject<boolean>(false);
+  timerComplete$ = new Subject<void>();
+
 
   minutes$ = this.minutesSource.asObservable();
   seconds$ = this.secondsSource.asObservable();
@@ -87,6 +90,7 @@ private updateTimer(): void {
         this.stopTimer();
         this.resetTimer();
         this.playAlarm();
+        this.timerComplete$.next();
     } else {
         this.minutesSource.next(Math.floor(remainingSeconds / 60));
         this.secondsSource.next(remainingSeconds % 60);
@@ -104,6 +108,7 @@ private updateTimer(): void {
 
   private playAlarm(): void {
     this.alarmSound.play();
+    
 }
  
 }

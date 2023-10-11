@@ -16,6 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -40,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,    
     MatDialogModule,
     MatPaginatorModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatInputModule,
@@ -58,6 +60,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatCheckboxModule,
   ]
 })
 export class MaterialModule { }
