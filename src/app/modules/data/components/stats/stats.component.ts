@@ -24,6 +24,7 @@ export class StatsComponent {
 
   public lineChartOptions: any = {
     responsive: true,
+    maintainAspectRatio: false,
     tooltips: {
       callbacks: {
         label: (tooltipItem: any, data: any) => {
@@ -65,10 +66,11 @@ export class StatsComponent {
     data: this.dailyStudyingData.map(ds => ds.pomodoros), // Convert string to number
     label: 'Pomodoro'
   },
-  {
-    data: this.dailyStudyingData.map(ds => ds.description),
-    label: 'Study Hours'
-  }];
+  // {
+  //   data: this.dailyStudyingData.map(ds => ds.description),
+  //   label: 'Study Hours'
+  // }
+];
 
   
 

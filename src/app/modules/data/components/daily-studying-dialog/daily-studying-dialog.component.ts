@@ -6,9 +6,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-data-dialog',
-  templateUrl: './data-dialog.component.html',
-  styleUrls: ['./data-dialog.component.sass']
+  selector: 'app-daily-studying-dialog',
+  templateUrl: './daily-studying-dialog.component.html',
+  styleUrls: ['./daily-studying-dialog.component.sass']
 })
 export class DataDialogComponent {
 

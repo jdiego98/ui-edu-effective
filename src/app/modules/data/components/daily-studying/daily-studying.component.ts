@@ -1,28 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DailyStudyingService } from '../../services/daily-studying.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DataDialogComponent } from '../data-dialog/data-dialog.component';
+import { DataDialogComponent } from '../daily-studying-dialog/daily-studying-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-data',
-  templateUrl: './data.component.html',
-  styleUrls: ['./data.component.sass']
+  selector: 'app-daily-studying',
+  templateUrl: './daily-studying.component.html',
+  styleUrls: ['./daily-studying.component.sass']
 })
 export class DataComponent {
 
-  submittedData: DailyStudying[] = [];
+  // submittedData: DailyStudying[] = [];
+  dataSource = new MatTableDataSource<DailyStudying>([]);
   displayedColumns: string[] = ['DateOfCreation', 'Pomodors', 'Description', 'Edit', 'Delete'];
 
-  constructor(private dailyStudyingService: DailyStudyingService, public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  // dateFilterForm: FormGroup;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private dailyStudyingService: DailyStudyingService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+    // this.dateFilterForm = new FormGroup({
+    //   startDate: new FormControl(''),
+    //   endDate: new FormControl('')
+    // });
+   }
 
   ngOnInit(): void {
     this.loadDailyStudying();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   loadDailyStudying(): void{
     this.dailyStudyingService.getDailyStudying().subscribe((dailyStudying) => {
-      this.submittedData = dailyStudying.dailyStudying;
+      this.dataSource.data = dailyStudying.dailyStudying;
     })
   }
 
@@ -67,7 +84,25 @@ export class DataComponent {
       }
     })
   }
+
+  // filterByDate(): void {
+  //   const startDate = new Date(this.dateFilterForm.value.startDate);
+  //   const endDate = new Date(this.dateFilterForm.value.endDate);
   
+  //   if (startDate && endDate) {
+  //     const filteredData = this.dataSource.data.filter(item => {
+  //       const itemDate = new Date(item.DateOfCreation);
+  //       return itemDate >= startDate && itemDate <= endDate;
+  //     });
+  
+  //     this.dataSource.data = filteredData;
+  //   } else {
+  //     this.loadDailyStudying(); // Si las fechas no están definidas, carga todos los datos nuevamente.
+  //   }
+  // }
+  
+ 
+
 }
 
 export interface DailyStudying {

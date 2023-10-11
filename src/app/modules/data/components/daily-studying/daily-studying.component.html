@@ -1,9 +1,5 @@
 <div class="container">
   <div class="actions">
-    <!-- <mat-form-field  class="search-field" >
-      <mat-label>Search</mat-label>
-      <input matInput (keyup)="onSearch($event)" placeholder="Search...">
-    </mat-form-field> -->
     <button
       mat-raised-button
       (click)="createDailyStudying()"
@@ -12,7 +8,7 @@
       Agregar dia de estudio
     </button>
   </div>
-  <mat-table [dataSource]="submittedData">
+  <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="DateOfCreation">
       <mat-header-cell *matHeaderCellDef>Date of Creation</mat-header-cell>
       <mat-cell *matCellDef="let data">{{
@@ -58,4 +54,10 @@
       "
     ></mat-row>
   </mat-table>
+  <mat-paginator 
+  [length]="dataSource.data.length" 
+  [pageSize]="10" 
+  [pageSizeOptions]="[5, 10, 20]" 
+  showFirstLastButtons>
+</mat-paginator>
 </div>
