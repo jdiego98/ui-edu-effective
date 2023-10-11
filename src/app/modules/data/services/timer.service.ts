@@ -9,7 +9,7 @@ export class TimerService {
 
 
   private static readonly DEFAULT_MINUTES = 25;
-  private alarmSound = new Audio('/assets/alarm.wav');
+  private alarmSound = new Audio('assets/alarm.wav');
 
   private minutesSource = new BehaviorSubject<number>(TimerService.DEFAULT_MINUTES);
   private secondsSource = new BehaviorSubject<number>(0);

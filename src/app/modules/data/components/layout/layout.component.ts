@@ -14,9 +14,9 @@ export class LayoutComponent {
 
   ngOnInit(): void {
     
-    this.authService.getToken().then((res) =>{
-      console.log(res)
-    })
+    // this.authService.getToken().then((res) =>{
+    //   console.log(res)
+    // })
   }
 
 }
