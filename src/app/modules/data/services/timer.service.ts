@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 export class TimerService {
 
 
-  private static readonly DEFAULT_MINUTES = 25;
-  private alarmSound = new Audio('assets/alarm.wav');
+  private static readonly DEFAULT_MINUTES = 1;
+  private alarmSound = new Audio('http://edu-effective-ui.s3-website-us-west-2.amazonaws.com/alarm.wav');
 
   private minutesSource = new BehaviorSubject<number>(TimerService.DEFAULT_MINUTES);
   private secondsSource = new BehaviorSubject<number>(0);
