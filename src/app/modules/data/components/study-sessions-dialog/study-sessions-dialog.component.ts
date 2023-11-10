@@ -37,11 +37,11 @@ export class StudySessionsDialogComponent {
   private initForm() {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      course: ['', Validators.required],
-      project: ['', Validators.required],
-      description: ['', Validators.required],
-      pomodorosSpected: ['', [Validators.required, Validators.min(0)]],
-      pomodorosDone: ['', [Validators.required, Validators.min(0)]]
+      course: ['', ],
+      project: ['', ],
+      description: ['', ],
+      pomodorosSpected: ['', [, Validators.min(0)]],
+      pomodorosDone: ['', [, Validators.min(0)]]
     });
   }
 
@@ -59,7 +59,7 @@ export class StudySessionsDialogComponent {
       course: formValues.course,
       project: formValues.project,
       description: formValues.description,
-      pomodorosSpected: formValues.pomodorosSpected,
+      pomodorosSpected: formValues.pomodorosSpected || 0,
       pomodorosDone: formValues.pomodorosDone || 0,
       dateOfCreation: this.data.studySession?.dateOfCreation  // default to 0 if not set
     };
