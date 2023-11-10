@@ -28,7 +28,7 @@
         <input matInput formControlName="pomodorosSpected" type="number" />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field *ngIf="data.mode === 'edit'">
         <mat-label>Pomodoros hechos</mat-label>
         <input matInput formControlName="pomodorosDone" type="number" />
       </mat-form-field>

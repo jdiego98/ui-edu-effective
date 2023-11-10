@@ -17,7 +17,7 @@ export class StudySessionsComponent {
 
 
   dataSource = new MatTableDataSource<StudySession>([]);
-  displayedColumns: string[] = ['Select', 'Name', 'Course', 'Project', 'Description', 'PomodorosExpected', 'PomodorosDone', 'Edit', 'Delete', 'Complete'];
+  displayedColumns: string[] = ['Select', 'Name', 'PomodorosExpected', 'PomodorosDone', 'Edit', 'Delete'];
   // selectedStudySession: StudySession | null = null;
 
   selection = new SelectionModel<StudySession>(false, []);
